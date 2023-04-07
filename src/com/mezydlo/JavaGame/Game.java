@@ -2,6 +2,7 @@ package com.mezydlo.JavaGame;
 
 
 import com.mezydlo.JavaGame.graphics.Screen;
+import com.mezydlo.JavaGame.input.Keyboard;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,7 +19,7 @@ public class Game extends Canvas implements Runnable {
     private Thread thread;
     private boolean running = false;
     private JFrame frame;
-
+    private Keyboard key;
     private Screen screen;
 
 
@@ -33,6 +34,8 @@ public class Game extends Canvas implements Runnable {
 
     public static String title = "Rain";
 
+    public int x = 0, y = 0;
+
     public Game() {
         // setting resolution
         Dimension size = new Dimension(width * scale, height * scale);
@@ -41,6 +44,9 @@ public class Game extends Canvas implements Runnable {
         screen = new Screen(width, height);
 
         frame = new JFrame();
+        key = new Keyboard();
+
+        addKeyListener(key);
     }
 
 
@@ -96,6 +102,15 @@ public class Game extends Canvas implements Runnable {
     }
 
     public void update() {
+        int multiplier = 1;
+        if(key.ctrl){
+            multiplier = 3;
+        }
+        key.update();
+        if(key.up) y -= multiplier;
+        if(key.down) y += multiplier;
+        if(key.left) x -= multiplier;
+        if(key.right) x += multiplier;
 
     }
 
@@ -113,7 +128,7 @@ public class Game extends Canvas implements Runnable {
         }
 
         screen.clear();
-        screen.render();
+        screen.render(x, y);
         for (int i = 0; i < pixels.length; i++) {
             pixels[i] = screen.pixels[i];
         }
