@@ -4,6 +4,8 @@ package com.mezydlo.JavaGame;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferInt;
 
 public class Game extends Canvas implements Runnable {
 
@@ -14,6 +16,17 @@ public class Game extends Canvas implements Runnable {
     private Thread thread;
     private boolean running = false;
     private JFrame frame;
+
+
+
+    // raster need to be clarified!
+
+    // we create an image with size of width x height (without scale tho!) and set its type to RGB (without alpha)
+    private BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+    // here we create an integer array which can actually write pixels to the image. To do so we need to
+    // firstly we get a raster of this image which represents those pixels, then we get a DataBufferInt out of it and
+    // finally we get raw Data so our integer array.
+    private int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
 
 
 
