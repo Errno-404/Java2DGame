@@ -5,6 +5,8 @@ My first 2D Java Game written in pure Java.
 ## About this project
 This project is my first game written in pure Java. The reason why I chose not to use any library like Vulkan or OpenGL 
 is because I would like to learn more about low-level graphics rendering.
+<br />
+_This project will be rebuild using Gradle in time_
 
 ## License
 The project is inspired by the Java game development tutorial created by [The Cherno](https://www.youtube.com/watch?v=GFYT7Lqt1h8&list=PLlrATfBNZ98eOOCk2fOFg7Qg5yoQfFAdf). 
